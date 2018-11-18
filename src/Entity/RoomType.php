@@ -33,10 +33,16 @@ class RoomType
      */
     private $roomPrices;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RoomTypeQuantity", mappedBy="room_type")
+     */
+    private $roomTypeQuantities;
+
     public function __construct()
     {
         $this->room_price = new ArrayCollection();
         $this->roomPrices = new ArrayCollection();
+        $this->roomTypeQuantities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +87,37 @@ class RoomType
             // set the owning side to null (unless already changed)
             if ($roomPrice->getRoomType() === $this) {
                 $roomPrice->setRoomType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RoomTypeQuantity[]
+     */
+    public function getRoomTypeQuantities(): Collection
+    {
+        return $this->roomTypeQuantities;
+    }
+
+    public function addRoomTypeQuantity(RoomTypeQuantity $roomTypeQuantity): self
+    {
+        if (!$this->roomTypeQuantities->contains($roomTypeQuantity)) {
+            $this->roomTypeQuantities[] = $roomTypeQuantity;
+            $roomTypeQuantity->setRoomType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoomTypeQuantity(RoomTypeQuantity $roomTypeQuantity): self
+    {
+        if ($this->roomTypeQuantities->contains($roomTypeQuantity)) {
+            $this->roomTypeQuantities->removeElement($roomTypeQuantity);
+            // set the owning side to null (unless already changed)
+            if ($roomTypeQuantity->getRoomType() === $this) {
+                $roomTypeQuantity->setRoomType(null);
             }
         }
 

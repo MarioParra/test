@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\RoomPrice;
 use App\Entity\RoomType;
+use App\Entity\RoomTypeQuantity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
