@@ -19,6 +19,25 @@ class RoomTypeQuantityRepository extends ServiceEntityRepository
         parent::__construct($registry, RoomTypeQuantity::class);
     }
 
+    /**
+     * @param \DateTime $init_date
+     * @param \DateTime $end_date
+     * @return mixed
+     */
+    public function findByDateRangeAndQuantity($init_date, $end_date)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.init_date >= :init_date')
+            ->andWhere('r.end_date <= :end_date')
+            ->setParameter('init_date', date('Y-m-d H:i:s', $init_date->getTimestamp()))
+            ->setParameter('end_date', date('Y-m-d H:i:s', $end_date->getTimestamp()))
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return RoomTypeQuantity[] Returns an array of RoomTypeQuantity objects
     //  */

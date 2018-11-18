@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello!{% endblock %}
+{% block title %}Hotel home page :){% endblock %}
 
 {% block body %}
 <style>
@@ -8,7 +8,6 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+{% include 'home_page/partials/_search_form.html.twig' with {'search_form': search_form} %}
 
-</div>
 {% endblock %}
