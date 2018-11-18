@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Entity to map room's price.
  * @ORM\Entity(repositoryClass="App\Repository\RoomPriceRepository")
  */
 class RoomPrice

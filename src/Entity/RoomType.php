@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Entity to map room's type: individual, double, etc.
  * @ORM\Entity(repositoryClass="App\Repository\RoomTypeRepository")
  */
 class RoomType
@@ -37,6 +38,11 @@ class RoomType
      * @ORM\OneToMany(targetEntity="App\Entity\RoomTypeQuantity", mappedBy="room_type")
      */
     private $roomTypeQuantities;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $allowed_guest;
 
     public function __construct()
     {
@@ -120,6 +126,18 @@ class RoomType
                 $roomTypeQuantity->setRoomType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAllowedGuest(): ?int
+    {
+        return $this->allowed_guest;
+    }
+
+    public function setAllowedGuest(?int $allowed_guest): self
+    {
+        $this->allowed_guest = $allowed_guest;
 
         return $this;
     }

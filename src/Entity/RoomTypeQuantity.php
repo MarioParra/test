@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Entity to map room quantity available.
  * @ORM\Entity(repositoryClass="App\Repository\RoomTypeQuantityRepository")
  */
 class RoomTypeQuantity

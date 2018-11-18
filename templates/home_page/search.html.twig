@@ -10,8 +10,34 @@
 
     {% include 'home_page/partials/_search_form.html.twig' with {'search_form': search_form} %}
 
-    {{ form_data }}
+    {% for message in messages %}
+        <div>{{ message }}</div>
+    {% endfor %}
 
-    {{ rooms }}
+    {% if rooms|length > 0 %}
+    <table>
+        <thead>
+        <tr>
+            <th>Room type</th>
+            <th>Rooms left</th>
+            <th></th>
+        </tr>
+        </thead>
+        {% for room in rooms %}
+            <tr>
+                <td>
+                    {{ room.roomType.name }}
+                </td>
+                <td>
+                    {{ room.quantity }}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    {% endif %}
 
 {% endblock %}
